@@ -1,9 +1,9 @@
 package br.org.rodnet.testeopenfeign.soap.dataaccess;
 
-import br.com.vr.dataaccess.stub.NumberToDollars;
-import br.com.vr.dataaccess.stub.NumberToDollarsResponse;
-import br.com.vr.dataaccess.stub.NumberToWords;
-import br.com.vr.dataaccess.stub.NumberToWordsResponse;
+import br.org.rodnet.dataaccess.stub.NumberToDollars;
+import br.org.rodnet.dataaccess.stub.NumberToDollarsResponse;
+import br.org.rodnet.dataaccess.stub.NumberToWords;
+import br.org.rodnet.dataaccess.stub.NumberToWordsResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
