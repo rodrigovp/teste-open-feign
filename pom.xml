@@ -94,11 +94,10 @@
 							</schemaIncludes>
 							<cleanPackageDirectories>false</cleanPackageDirectories>
 							<generateDirectory>${project.build.directory}/generated-sources/dataaccess</generateDirectory>
-							<generatePackage>br.com.vr.dataaccess.stub</generatePackage>
+							<generatePackage>br.org.rodnet.dataaccess.stub</generatePackage>
 						</configuration>
 					</execution>
 				</executions>
-
 			</plugin>
 		</plugins>
 
