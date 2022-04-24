@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.6</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>teste-open-feign</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>teste-open-feign</name>
+	<description>Teste do Open Feign</description>
+	<properties>
+		<java.version>17</java.version>
+		<spring-cloud.version>2020.0.4</spring-cloud.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+		<!-- este é o encode/decode para que o feign suporte trabalhar com soap -->
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-soap</artifactId>
+			<version>11.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+
+		<!-- dependências necessárias, caso a JVM seja a 11 ou 17  -->
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+		<!-- fim das dependências para JVM 11 e SOAP -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.14.0</version>
+				<dependencies>
+					<!-- Dependência necessária para gerar os stubs no Java 17 -->
+					<dependency>
+						<groupId>org.glassfish.jaxb</groupId>
+						<artifactId>jaxb-runtime</artifactId>
+						<version>2.3.3</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>dataaccess</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>${project.basedir}/src/main/resources/schema/dataaccess</schemaDirectory>
+							<schemaIncludes>
+								<include>dataaccess.wsdl</include>
+							</schemaIncludes>
+							<cleanPackageDirectories>false</cleanPackageDirectories>
+							<generateDirectory>${project.build.directory}/generated-sources/dataaccess</generateDirectory>
+							<generatePackage>br.com.vr.dataaccess.stub</generatePackage>
+						</configuration>
+					</execution>
+				</executions>
+
+			</plugin>
+		</plugins>
+
+	</build>
+
+</project>
