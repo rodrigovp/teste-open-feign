@@ -3,7 +3,7 @@ dataaccess:
     url: https://www.dataaccess.com/webservicesserver/NumberConversion.wso
     wsdl: https://www.dataaccess.com/webservicesserver/NumberConversion.wso?WSDL
 
-# ajuda a mostrar todos os logs de pedido/resposta HTTP
+# mostra todos os logs de pedido/resposta HTTP
 logging.level.com.example.testeopenfeign: DEBUG
 
 # configuração de timeout
